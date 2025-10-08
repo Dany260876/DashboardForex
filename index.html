@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Forex - Politique Monétaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="header-title">
+                    <span class="gold-accent">💰</span>
+                    Dashboard Forex - Politique Monétaire
+                    <span class="gold-accent">📈</span>
+                </h1>
+                <div class="header-controls">
+                    <button class="btn btn-secondary toggle-view" id="toggleView">
+                        <span id="viewToggleText">Vue Compacte</span>
+                    </button>
+                    <button class="btn btn-primary" id="editModeBtn">
+                        ✏️ Mode Édition
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filtres -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="signalFilter">Filtrer par signal:</label>
+                    <select id="signalFilter" class="form-control filter-select">
+                        <option value="all">Tous les signaux</option>
+                        <option value="HAUSSE">🔴 Hausse probable</option>
+                        <option value="PAUSE">🟡 Pause probable</option>
+                        <option value="BAISSE">🟢 Baisse probable</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="currencyFilter">Filtrer par devise:</label>
+                    <select id="currencyFilter" class="form-control filter-select">
+                        <option value="all">Toutes les devises</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cartes des devises -->
+        <main class="currencies-grid" id="currenciesGrid">
+            <!-- Les cartes seront générées dynamiquement -->
+        </main>
+
+        <!-- Modal de détails -->
+        <div class="modal hidden" id="detailsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Détails de la devise</h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Contenu généré dynamiquement -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal d'édition -->
+        <div class="modal hidden" id="editModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="editModalTitle">Modifier les données économiques</h3>
+                    <button class="modal-close" id="editModalClose">&times;</button>
+                </div>
+                <div class="modal-body" id="editModalBody">
+                    <form id="editForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editInflation">Inflation actuelle (%):</label>
+                                <input type="number" step="0.1" id="editInflation" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPIB">Croissance PIB trim. (%):</label>
+                                <input type="number" step="0.1" id="editPIB" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="editChomage">Chômage (%):</label>
+                                <input type="number" step="0.1" id="editChomage" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPMI">PMI Composite:</label>
+                                <input type="number" step="0.1" id="editPMI" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTaux">Taux directeur (%):</label>
+                                <input type="number" step="0.01" id="editTaux" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="editSignal">Signal global:</label>
+                                <select id="editSignal" class="form-control">
+                                    <option value="HAUSSE">🔴 HAUSSE</option>
+                                    <option value="PAUSE">🟡 PAUSE</option>
+                                    <option value="BAISSE">🟢 BAISSE</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">💾 Sauvegarder</button>
+                            <button type="button" class="btn btn-secondary" id="cancelEdit">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div class="notification hidden" id="notification">
+            <div class="notification-content">
+                <span id="notificationMessage"></span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p>Dernière mise à jour: <span id="lastUpdate">25 septembre 2025, 12:00 CEST</span></p>
+                <p>⚠️ Les données sont à titre informatif uniquement. Consultez toujours plusieurs sources avant de prendre des décisions d'investissement.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
